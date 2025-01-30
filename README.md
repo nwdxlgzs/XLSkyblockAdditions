@@ -1,2 +1,2 @@
 # XLSkyblockAdditions
-XLSkyblockAdditions
+旋律空岛附加mod:调整合成配方等简化流程（也提供无草方块的草方块合成方案，实现纯泥土空岛养动物），装备拆解、旧版附魔金配方、锁链甲合成等
