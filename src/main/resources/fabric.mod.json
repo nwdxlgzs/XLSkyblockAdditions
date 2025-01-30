@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "xlskyblockadditions",
+	"version": "${version}",
+	"name": "XLSkyblockAdditions",
+	"description": "旋律空岛附加mod:调整合成配方等简化流程（也提供无草方块的草方块合成方案，实现纯泥土空岛养动物），装备拆解、旧版附魔金配方、锁链甲合成等",
+	"authors": [
+		"nwdxlgzs"
+	],
+	"contact": {
+		"homepage": "https://github.com/nwdxlgzs/XLSkyblockAdditions",
+		"sources": "https://github.com/nwdxlgzs/XLSkyblockAdditions"
+	},
+	"license": "MIT",
+	"icon": "assets/xlskyblockadditions/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.nwdxlgzs.skyadd.XLSkyblockAdditions"
+		],
+		"fabric-datagen": [
+			"com.nwdxlgzs.skyadd.XLSkyblockAdditionsDataGenerator"
+		]
+	},
+	"mixins": [
+		"xlskyblockadditions.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
