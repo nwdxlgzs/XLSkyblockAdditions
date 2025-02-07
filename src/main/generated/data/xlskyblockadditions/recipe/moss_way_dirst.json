@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "minecraft:bone_meal",
+    "M": [
+      "minecraft:moss_block",
+      "minecraft:pale_moss_block"
+    ],
+    "T": "minecraft:spruce_sapling"
+  },
+  "pattern": [
+    "BTB",
+    "MMM",
+    "MMM"
+  ],
+  "result": {
+    "count": 6,
+    "id": "minecraft:podzol"
+  }
+}
