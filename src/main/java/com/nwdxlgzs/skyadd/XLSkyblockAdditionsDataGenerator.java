@@ -10,6 +10,7 @@ import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.data.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootTable;
 import net.minecraft.recipe.Ingredient;
@@ -145,6 +146,52 @@ public class XLSkyblockAdditionsDataGenerator implements DataGeneratorEntrypoint
                             .criterion(hasItem(Items.GOLD_BLOCK), conditionsFromItem(Items.GOLD_BLOCK))
                             .criterion(hasItem(Items.APPLE), conditionsFromItem(Items.APPLE))
                             .offerTo(exporter);
+                    //合成方式合成黑曜石（8岩浆桶+1水桶）
+                    createShaped(RecipeCategory.MISC, Items.OBSIDIAN, 8)
+                            .pattern("LLL")
+                            .pattern("LWL")
+                            .pattern("LLL")
+                            .input('L', Items.LAVA_BUCKET)
+                            .input('W', Items.WATER_BUCKET)
+                            .criterion(hasItem(Items.LAVA_BUCKET), conditionsFromItem(Items.LAVA_BUCKET))
+                            .criterion(hasItem(Items.WATER_BUCKET), conditionsFromItem(Items.WATER_BUCKET))
+                            .offerTo(exporter, "bucket_way_obsidian");
+                    //9根箭合成去皮竹块（方便前期刷怪塔产生建筑方块以及后期刷怪塔能让箭有用途）
+                    createShaped(RecipeCategory.BUILDING_BLOCKS, Items.STRIPPED_BAMBOO_BLOCK, 1)
+                            .pattern("AAA")
+                            .pattern("AAA")
+                            .pattern("AAA")
+                            .input('A', Items.ARROW)
+                            .criterion(hasItem(Items.ARROW), conditionsFromItem(Items.ARROW))
+                            .offerTo(exporter, "arrow_way_bamboo");
+                    //消耗一把剪刀把箭剪断获得燧石（什么？你说你用岩浆点的地狱门？这么好的方法不用？）
+                    createShapeless(RecipeCategory.MISC, Items.FLINT, 1)
+                            .input(Items.ARROW)
+                            .input(Items.SHEARS)
+                            .criterion(hasItem(Items.ARROW), conditionsFromItem(Items.ARROW))
+                            .criterion(hasItem(Items.SHEARS), conditionsFromItem(Items.SHEARS))
+                            .offerTo(exporter, "shears_way_flint");
+                    //合成方案合成灰化土
+                    //    骨粉   云杉树苗    骨粉
+                    //    苔藓     苔藓     苔藓
+                    //    苔藓     苔藓     苔藓
+                    //苔藓支持苔藓块也支持苍白苔藓，允许混用
+                    Ingredient mosstype = Ingredient.ofItems(
+                            Items.MOSS_BLOCK,
+                            Items.PALE_MOSS_BLOCK);
+                    createShaped(RecipeCategory.MISC, Items.PODZOL, 6)
+                            .pattern("BTB")
+                            .pattern("MMM")
+                            .pattern("MMM")
+                            .input('B', Items.BONE_MEAL)
+                            .input('T', Items.SPRUCE_SAPLING)
+                            .input('M', mosstype)
+                            .criterion(hasItem(Items.BONE_MEAL), conditionsFromItem(Items.BONE_MEAL))
+                            .criterion(hasItem(Items.SPRUCE_SAPLING), conditionsFromItem(Items.SPRUCE_SAPLING))
+                            .offerTo(exporter, "moss_way_dirst");
+                    //海龟壳分解成海龟鳞甲（1个）
+                    ItemDisassembly(RecipeCategory.MISC, Items.TURTLE_HELMET, Items.TURTLE_SCUTE);
+
                 }
 
                 private void ItemDisassembly(RecipeCategory category, Item input, Item output) {
