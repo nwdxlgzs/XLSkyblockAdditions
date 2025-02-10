@@ -191,7 +191,11 @@ public class XLSkyblockAdditionsDataGenerator implements DataGeneratorEntrypoint
                             .offerTo(exporter, "moss_way_dirst");
                     //海龟壳分解成海龟鳞甲（1个）
                     ItemDisassembly(RecipeCategory.MISC, Items.TURTLE_HELMET, Items.TURTLE_SCUTE);
-
+                    //便携的骨头直接合成骨块
+                    createShapeless(RecipeCategory.MISC, Items.BONE_BLOCK, 1)
+                            .input(Items.BONE).input(Items.BONE).input(Items.BONE)
+                            .criterion(hasItem(Items.BONE), conditionsFromItem(Items.BONE))
+                            .offerTo(exporter, "fast_bone_block");
                 }
 
                 private void ItemDisassembly(RecipeCategory category, Item input, Item output) {
