@@ -3,6 +3,7 @@
 	"package": "com.nwdxlgzs.skyadd.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
+		"SnowGolemEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
