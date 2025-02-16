@@ -186,13 +186,13 @@ public class XLSkyblockAdditionsDataGenerator implements DataGeneratorEntrypoint
                             .offerTo(exporter, "fast_bone_block");
                     //珊瑚块合成（9珊瑚/珊瑚扇合成1珊瑚块）
                     NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.TUBE_CORAL, Items.TUBE_CORAL_BLOCK, "tube_coral_block_compose");
-                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.TUBE_CORAL_FAN, Items.BRAIN_CORAL_BLOCK, "tube_coral_block_compose2");
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.TUBE_CORAL_FAN, Items.TUBE_CORAL_BLOCK, "tube_coral_block_compose2");
                     NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.BRAIN_CORAL, Items.BRAIN_CORAL_BLOCK, "brain_coral_block_compose");
-                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.BRAIN_CORAL_FAN, Items.BUBBLE_CORAL_BLOCK, "brain_coral_block_compose2");
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.BRAIN_CORAL_FAN, Items.BRAIN_CORAL_BLOCK, "brain_coral_block_compose2");
                     NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.BUBBLE_CORAL, Items.BUBBLE_CORAL_BLOCK, "bubble_coral_block_compose");
                     NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.BUBBLE_CORAL_FAN, Items.BUBBLE_CORAL_BLOCK, "bubble_coral_block_compose2");
                     NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.FIRE_CORAL, Items.FIRE_CORAL_BLOCK, "fire_coral_block_compose");
-                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.FIRE_CORAL_FAN, Items.HORN_CORAL_BLOCK, "fire_coral_block_compose2");
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.FIRE_CORAL_FAN, Items.FIRE_CORAL_BLOCK, "fire_coral_block_compose2");
                     NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.HORN_CORAL, Items.HORN_CORAL_BLOCK, "horn_coral_block_compose");
                     NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.HORN_CORAL_FAN, Items.HORN_CORAL_BLOCK, "horn_coral_block_compose2");
                     //蜘蛛线合成蜘蛛网
