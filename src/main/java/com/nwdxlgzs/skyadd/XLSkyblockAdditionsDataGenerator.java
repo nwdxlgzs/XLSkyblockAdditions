@@ -44,13 +44,7 @@ public class XLSkyblockAdditionsDataGenerator implements DataGeneratorEntrypoint
                 @Override
                 public void generate() {
                     //腐肉合成地狱岩
-                    createShaped(RecipeCategory.BUILDING_BLOCKS, Items.NETHERRACK, 1)
-                            .pattern("RRR")
-                            .pattern("RRR")
-                            .pattern("RRR")
-                            .input('R', Items.ROTTEN_FLESH)
-                            .criterion(hasItem(Items.ROTTEN_FLESH), conditionsFromItem(Items.ROTTEN_FLESH))
-                            .offerTo(exporter, "netherrack_compose");
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.ROTTEN_FLESH, Items.NETHERRACK, "netherrack_compose");
                     //绯红菌+地狱岩合成绯红菌岩
                     createShapeless(RecipeCategory.BUILDING_BLOCKS, Items.CRIMSON_NYLIUM, 1)
                             .input(Items.CRIMSON_FUNGUS)
@@ -157,13 +151,7 @@ public class XLSkyblockAdditionsDataGenerator implements DataGeneratorEntrypoint
                             .criterion(hasItem(Items.WATER_BUCKET), conditionsFromItem(Items.WATER_BUCKET))
                             .offerTo(exporter, "bucket_way_obsidian");
                     //9根箭合成去皮竹块（方便前期刷怪塔产生建筑方块以及后期刷怪塔能让箭有用途）
-                    createShaped(RecipeCategory.BUILDING_BLOCKS, Items.STRIPPED_BAMBOO_BLOCK, 1)
-                            .pattern("AAA")
-                            .pattern("AAA")
-                            .pattern("AAA")
-                            .input('A', Items.ARROW)
-                            .criterion(hasItem(Items.ARROW), conditionsFromItem(Items.ARROW))
-                            .offerTo(exporter, "arrow_way_bamboo");
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.ARROW, Items.STRIPPED_BAMBOO_BLOCK, "arrow_way_bamboo");
                     //消耗一把剪刀把箭剪断获得燧石（什么？你说你用岩浆点的地狱门？这么好的方法不用？）
                     createShapeless(RecipeCategory.MISC, Items.FLINT, 1)
                             .input(Items.ARROW)
@@ -196,6 +184,34 @@ public class XLSkyblockAdditionsDataGenerator implements DataGeneratorEntrypoint
                             .input(Items.BONE).input(Items.BONE).input(Items.BONE)
                             .criterion(hasItem(Items.BONE), conditionsFromItem(Items.BONE))
                             .offerTo(exporter, "fast_bone_block");
+                    //珊瑚块合成（9珊瑚合成1珊瑚块）
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.TUBE_CORAL, Items.TUBE_CORAL_BLOCK, "tube_coral_block_compose");
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.BRAIN_CORAL, Items.BRAIN_CORAL_BLOCK, "brain_coral_block_compose");
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.BUBBLE_CORAL, Items.BUBBLE_CORAL_BLOCK, "bubble_coral_block_compose");
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.FIRE_CORAL, Items.FIRE_CORAL_BLOCK, "fire_coral_block_compose");
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.HORN_CORAL, Items.HORN_CORAL_BLOCK, "horn_coral_block_compose");
+                    //蜘蛛线合成蜘蛛网
+                    NineToOne(RecipeCategory.MISC, Items.STRING, Items.COBWEB, "cobweb_compose");
+                    //灵魂沙合成（灵魂沙=生命+沙子，这很合理吧）
+                    createShaped(RecipeCategory.BUILDING_BLOCKS, Items.SOUL_SAND, 1)
+                            .pattern("EEE")
+                            .pattern("ESE")
+                            .pattern("EEE")
+                            .input('E', Items.EGG)
+                            .input('S', Items.SAND)
+                            .criterion(hasItem(Items.EGG), conditionsFromItem(Items.EGG))
+                            .criterion(hasItem(Items.SAND), conditionsFromItem(Items.SAND))
+                            .offerTo(exporter, "egg_way_soul_sand");
+                }
+
+                private void NineToOne(RecipeCategory category, Item input, Item output, String name) {
+                    createShaped(category, output, 1)
+                            .pattern("CCC")
+                            .pattern("CCC")
+                            .pattern("CCC")
+                            .input('C', input)
+                            .criterion(hasItem(input), conditionsFromItem(input))
+                            .offerTo(exporter, name);
                 }
 
                 private void ItemDisassembly(RecipeCategory category, Item input, Item output) {
