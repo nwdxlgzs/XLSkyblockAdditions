@@ -108,28 +108,6 @@ public class XLSkyblockAdditionsDataGenerator implements DataGeneratorEntrypoint
                     ArmorDisassembly(Items.GOLDEN_HELMET, Items.GOLDEN_CHESTPLATE, Items.GOLDEN_LEGGINGS, Items.GOLDEN_BOOTS, Items.GOLD_INGOT);
                     //钻石甲拆解（任意钻石甲拆解为1个钻石）
                     ArmorDisassembly(Items.DIAMOND_HELMET, Items.DIAMOND_CHESTPLATE, Items.DIAMOND_LEGGINGS, Items.DIAMOND_BOOTS, Items.DIAMOND);
-                    //草方块合成（谁真玩成肝空岛，开局不要草方块的，为后期提供一个草方块获取途径）
-                    //全部是可再生无前置依赖资源（岩浆除外，需要前置驱动再生）：苔藓+骨粉+苍白苔藓+水桶+泥土+岩浆桶+圆石+橡树树苗+黑石
-                    createShapeless(RecipeCategory.DECORATIONS, Items.GRASS_BLOCK, 1)
-                            .input(Items.MOSS_BLOCK)
-                            .input(Items.BONE_MEAL)
-                            .input(Items.PALE_MOSS_BLOCK)
-                            .input(Items.WATER_BUCKET)
-                            .input(Items.DIRT)
-                            .input(Items.LAVA_BUCKET)
-                            .input(Items.COBBLESTONE)
-                            .input(Items.OAK_SAPLING)
-                            .input(Items.BLACKSTONE)
-                            .criterion(hasItem(Items.MOSS_BLOCK), conditionsFromItem(Items.MOSS_BLOCK))
-                            .criterion(hasItem(Items.BONE_MEAL), conditionsFromItem(Items.BONE_MEAL))
-                            .criterion(hasItem(Items.PALE_MOSS_BLOCK), conditionsFromItem(Items.PALE_MOSS_BLOCK))
-                            .criterion(hasItem(Items.WATER_BUCKET), conditionsFromItem(Items.WATER_BUCKET))
-                            .criterion(hasItem(Items.DIRT), conditionsFromItem(Items.DIRT))
-                            .criterion(hasItem(Items.LAVA_BUCKET), conditionsFromItem(Items.LAVA_BUCKET))
-                            .criterion(hasItem(Items.COBBLESTONE), conditionsFromItem(Items.COBBLESTONE))
-                            .criterion(hasItem(Items.OAK_SAPLING), conditionsFromItem(Items.OAK_SAPLING))
-                            .criterion(hasItem(Items.BLACKSTONE), conditionsFromItem(Items.BLACKSTONE))
-                            .offerTo(exporter, "create_grass_block");
                     //传统的附魔金苹果配方（苹果周围一圈金块）
                     createShaped(RecipeCategory.FOOD, Items.ENCHANTED_GOLDEN_APPLE, 1)
                             .pattern("GGG")
@@ -159,24 +137,6 @@ public class XLSkyblockAdditionsDataGenerator implements DataGeneratorEntrypoint
                             .criterion(hasItem(Items.ARROW), conditionsFromItem(Items.ARROW))
                             .criterion(hasItem(Items.SHEARS), conditionsFromItem(Items.SHEARS))
                             .offerTo(exporter, "shears_way_flint");
-                    //合成方案合成灰化土
-                    //    骨粉   云杉树苗    骨粉
-                    //    苔藓     苔藓     苔藓
-                    //    苔藓     苔藓     苔藓
-                    //苔藓支持苔藓块也支持苍白苔藓，允许混用
-                    Ingredient mosstype = Ingredient.ofItems(
-                            Items.MOSS_BLOCK,
-                            Items.PALE_MOSS_BLOCK);
-                    createShaped(RecipeCategory.MISC, Items.PODZOL, 6)
-                            .pattern("BTB")
-                            .pattern("MMM")
-                            .pattern("MMM")
-                            .input('B', Items.BONE_MEAL)
-                            .input('T', Items.SPRUCE_SAPLING)
-                            .input('M', mosstype)
-                            .criterion(hasItem(Items.BONE_MEAL), conditionsFromItem(Items.BONE_MEAL))
-                            .criterion(hasItem(Items.SPRUCE_SAPLING), conditionsFromItem(Items.SPRUCE_SAPLING))
-                            .offerTo(exporter, "moss_way_dirst");
                     //海龟壳分解成海龟鳞甲（1个）
                     ItemDisassembly(RecipeCategory.MISC, Items.TURTLE_HELMET, Items.TURTLE_SCUTE);
                     //便携的骨头直接合成骨块
@@ -184,17 +144,17 @@ public class XLSkyblockAdditionsDataGenerator implements DataGeneratorEntrypoint
                             .input(Items.BONE).input(Items.BONE).input(Items.BONE)
                             .criterion(hasItem(Items.BONE), conditionsFromItem(Items.BONE))
                             .offerTo(exporter, "fast_bone_block");
-                    //珊瑚块合成（9珊瑚/珊瑚扇合成1珊瑚块）
-                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.TUBE_CORAL, Items.TUBE_CORAL_BLOCK, "tube_coral_block_compose");
-                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.TUBE_CORAL_FAN, Items.TUBE_CORAL_BLOCK, "tube_coral_block_compose2");
-                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.BRAIN_CORAL, Items.BRAIN_CORAL_BLOCK, "brain_coral_block_compose");
-                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.BRAIN_CORAL_FAN, Items.BRAIN_CORAL_BLOCK, "brain_coral_block_compose2");
-                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.BUBBLE_CORAL, Items.BUBBLE_CORAL_BLOCK, "bubble_coral_block_compose");
-                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.BUBBLE_CORAL_FAN, Items.BUBBLE_CORAL_BLOCK, "bubble_coral_block_compose2");
-                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.FIRE_CORAL, Items.FIRE_CORAL_BLOCK, "fire_coral_block_compose");
-                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.FIRE_CORAL_FAN, Items.FIRE_CORAL_BLOCK, "fire_coral_block_compose2");
-                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.HORN_CORAL, Items.HORN_CORAL_BLOCK, "horn_coral_block_compose");
-                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.HORN_CORAL_FAN, Items.HORN_CORAL_BLOCK, "horn_coral_block_compose2");
+                    //珊瑚块合成（4珊瑚/9珊瑚扇合成1珊瑚块）
+                    FourToOne(RecipeCategory.BUILDING_BLOCKS, Items.TUBE_CORAL, Items.TUBE_CORAL_BLOCK, "tube_coral_block_compose");
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.TUBE_CORAL_FAN, Items.TUBE_CORAL_BLOCK, "tube_coral_block_compose_funway");
+                    FourToOne(RecipeCategory.BUILDING_BLOCKS, Items.BRAIN_CORAL, Items.BRAIN_CORAL_BLOCK, "brain_coral_block_compose");
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.BRAIN_CORAL_FAN, Items.BRAIN_CORAL_BLOCK, "brain_coral_block_compose_funway");
+                    FourToOne(RecipeCategory.BUILDING_BLOCKS, Items.BUBBLE_CORAL, Items.BUBBLE_CORAL_BLOCK, "bubble_coral_block_compose");
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.BUBBLE_CORAL_FAN, Items.BUBBLE_CORAL_BLOCK, "bubble_coral_block_compose_funway");
+                    FourToOne(RecipeCategory.BUILDING_BLOCKS, Items.FIRE_CORAL, Items.FIRE_CORAL_BLOCK, "fire_coral_block_compose");
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.FIRE_CORAL_FAN, Items.FIRE_CORAL_BLOCK, "fire_coral_block_compose_funway");
+                    FourToOne(RecipeCategory.BUILDING_BLOCKS, Items.HORN_CORAL, Items.HORN_CORAL_BLOCK, "horn_coral_block_compose");
+                    NineToOne(RecipeCategory.BUILDING_BLOCKS, Items.HORN_CORAL_FAN, Items.HORN_CORAL_BLOCK, "horn_coral_block_compose_funway");
                     //蜘蛛线合成蜘蛛网
                     NineToOne(RecipeCategory.MISC, Items.STRING, Items.COBWEB, "cobweb_compose");
                     //灵魂沙合成（灵魂沙=生命+沙子，这很合理吧）
@@ -207,6 +167,23 @@ public class XLSkyblockAdditionsDataGenerator implements DataGeneratorEntrypoint
                             .criterion(hasItem(Items.EGG), conditionsFromItem(Items.EGG))
                             .criterion(hasItem(Items.SAND), conditionsFromItem(Items.SAND))
                             .offerTo(exporter, "egg_way_soul_sand");
+                    //哭泣黑曜石（黑曜石+恶魂之泪）
+                    createShapeless(RecipeCategory.BUILDING_BLOCKS, Items.CRYING_OBSIDIAN, 1)
+                            .input(Items.OBSIDIAN)
+                            .input(Items.GHAST_TEAR)
+                            .criterion(hasItem(Items.OBSIDIAN), conditionsFromItem(Items.OBSIDIAN))
+                            .criterion(hasItem(Items.GHAST_TEAR), conditionsFromItem(Items.GHAST_TEAR))
+                            .offerTo(exporter, "ghast_tear_way_crying_obsidian");
+                    //便捷深板岩原石合成（两个圆石）
+                    createShapeless(RecipeCategory.BUILDING_BLOCKS, Items.COBBLED_DEEPSLATE, 1)
+                            .input(Items.COBBLESTONE).input(Items.COBBLESTONE)
+                            .criterion(hasItem(Items.COBBLESTONE), conditionsFromItem(Items.COBBLESTONE))
+                            .offerTo(exporter, "easy_cobbled_deepslate");
+                    //无损西瓜分解
+                    createShapeless(RecipeCategory.FOOD, Items.MELON_SLICE, 9)
+                            .input(Items.MELON)
+                            .criterion(hasItem(Items.MELON), conditionsFromItem(Items.MELON))
+                            .offerTo(exporter, "split_melon");
                 }
 
                 private void NineToOne(RecipeCategory category, Item input, Item output, String name) {
@@ -214,6 +191,15 @@ public class XLSkyblockAdditionsDataGenerator implements DataGeneratorEntrypoint
                             .pattern("CCC")
                             .pattern("CCC")
                             .pattern("CCC")
+                            .input('C', input)
+                            .criterion(hasItem(input), conditionsFromItem(input))
+                            .offerTo(exporter, name);
+                }
+
+                private void FourToOne(RecipeCategory category, Item input, Item output, String name) {
+                    createShaped(category, output, 1)
+                            .pattern("CC")
+                            .pattern("CC")
                             .input('C', input)
                             .criterion(hasItem(input), conditionsFromItem(input))
                             .offerTo(exporter, name);
