@@ -184,6 +184,19 @@ public class XLSkyblockAdditionsDataGenerator implements DataGeneratorEntrypoint
                             .input(Items.MELON)
                             .criterion(hasItem(Items.MELON), conditionsFromItem(Items.MELON))
                             .offerTo(exporter, "split_melon");
+                    //铜块兑换（三叉戟+铜锭+包裹一圈腐肉，通过消耗稀有的三叉戟兑换铜，毕竟铜产能太低了，农场效率可能不如主世界下矿快……）
+                    createShaped(RecipeCategory.BUILDING_BLOCKS, Items.COPPER_BLOCK,64)
+                            .pattern("RRR")
+                            .pattern("RSR")
+                            .pattern("RCR")
+                            .input('R', Items.ROTTEN_FLESH)
+                            .input('S', Items.TRIDENT)
+                            .input('C', Items.COPPER_INGOT)
+                            .criterion(hasItem(Items.ROTTEN_FLESH), conditionsFromItem(Items.ROTTEN_FLESH))
+                            .criterion(hasItem(Items.TRIDENT), conditionsFromItem(Items.TRIDENT))
+                            .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
+                            .offerTo(exporter, "exchange_copper_block");
+                    
                 }
 
                 private void NineToOne(RecipeCategory category, Item input, Item output, String name) {
