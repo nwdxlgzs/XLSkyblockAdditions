@@ -196,7 +196,59 @@ public class XLSkyblockAdditionsDataGenerator implements DataGeneratorEntrypoint
                             .criterion(hasItem(Items.TRIDENT), conditionsFromItem(Items.TRIDENT))
                             .criterion(hasItem(Items.COPPER_INGOT), conditionsFromItem(Items.COPPER_INGOT))
                             .offerTo(exporter, "exchange_copper_block");
-                    
+                    // 末地石合成（4末地石=末地石+圆石+末影珍珠+紫颂果）
+                    createShaped(RecipeCategory.BUILDING_BLOCKS, Items.END_STONE, 4)
+                            .pattern("AB").pattern("CD")
+                            .input('A', Items.END_STONE)
+                            .input('B', Items.COBBLESTONE)
+                            .input('C', Items.ENDER_PEARL)
+                            .input('D', Items.CHORUS_FRUIT)
+                            .criterion(hasItem(Items.COBBLESTONE), conditionsFromItem(Items.COBBLESTONE))
+                            .criterion(hasItem(Items.ENDER_PEARL), conditionsFromItem(Items.ENDER_PEARL))
+                            .criterion(hasItem(Items.CHORUS_FRUIT), conditionsFromItem(Items.CHORUS_FRUIT))
+                            .criterion(hasItem(Items.END_STONE), conditionsFromItem(Items.END_STONE))
+                            .offerTo(exporter, "make_end_stone");
+                    // 绯红/诡异块分解成地狱疣（让你免李芒果中让山羊撞了，1合1很合理吧）
+                    Ingredient allWartBlock = Ingredient.ofItems(Items.NETHER_WART_BLOCK, Items.WARPED_WART_BLOCK);
+                    createShapeless(RecipeCategory.MISC, Items.NETHER_WART, 1)
+                            .input(allWartBlock)
+                            .criterion(hasItem(Items.NETHER_WART_BLOCK), conditionsFromItem(Items.NETHER_WART_BLOCK))
+                            .criterion(hasItem(Items.WARPED_WART_BLOCK), conditionsFromItem(Items.WARPED_WART_BLOCK))
+                            .offerTo(exporter, "any_wart_block_decompose");
+                    // 强化深板岩配方（通过非常苛刻的配方换来基岩硬度方块很赚吧）
+                    /* 幽匿感测体   幽匿催发体   幽匿尖啸体
+                     * 哭泣黑曜石     深板岩     末影之眼       ===>  强化深板岩
+                     *  远古残骸     末地石      远古残骸
+                     * 大规模量产的话需要：
+                     * 1.打一次坚守者，之后做幽匿方块农场
+                     * 2.猪灵蛮兵刷怪塔，量产远古残骸，量产肯定双维度基本需要前置科技黑曜石机
+                     * 3.需要打龙，拿到末地石，末地石合成量产需要小黑塔刷石机紫颂果农场
+                     * 4.需要和猪灵交易或者使用黑曜石+恶魂之泪方案量产哭泣黑曜石
+                     * 5.量产末影之眼需要小黑塔和烈焰人农场
+                     * 6.提供双圆石合成深板岩原石了，应该不会有人做炼药机做浓稠药水吧？
+                     * 究极需要前置科技，作为给你强化深板岩，很合理吧，这样杀调机/凋灵玫瑰农场就可以不要基岩了。但是强化深板岩能刷怪，记得做防刷怪
+                     */
+                    createShaped(RecipeCategory.BUILDING_BLOCKS, Items.REINFORCED_DEEPSLATE, 1)
+                            .pattern("QWE")
+                            .pattern("ASD")
+                            .pattern("ZXZ")
+                            .input('Q', Items.SCULK_SENSOR)
+                            .input('W', Items.SCULK_CATALYST)
+                            .input('E', Items.SCULK_SHRIEKER)
+                            .input('A', Items.CRYING_OBSIDIAN)
+                            .input('S', Items.DEEPSLATE)
+                            .input('D', Items.ENDER_EYE)
+                            .input('Z', Items.ANCIENT_DEBRIS)
+                            .input('X', Items.END_STONE)
+                            .criterion(hasItem(Items.SCULK_SENSOR), conditionsFromItem(Items.SCULK_SENSOR))
+                            .criterion(hasItem(Items.SCULK_CATALYST), conditionsFromItem(Items.SCULK_CATALYST))
+                            .criterion(hasItem(Items.SCULK_SHRIEKER), conditionsFromItem(Items.SCULK_SHRIEKER))
+                            .criterion(hasItem(Items.CRYING_OBSIDIAN), conditionsFromItem(Items.CRYING_OBSIDIAN))
+                            .criterion(hasItem(Items.DEEPSLATE), conditionsFromItem(Items.DEEPSLATE))
+                            .criterion(hasItem(Items.ENDER_EYE), conditionsFromItem(Items.ENDER_EYE))
+                            .criterion(hasItem(Items.ANCIENT_DEBRIS), conditionsFromItem(Items.ANCIENT_DEBRIS))
+                            .criterion(hasItem(Items.END_STONE), conditionsFromItem(Items.END_STONE))
+                            .offerTo(exporter, "make_reinforced_deepslate");
                 }
 
                 private void NineToOne(RecipeCategory category, Item input, Item output, String name) {
